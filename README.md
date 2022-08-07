@@ -19,8 +19,12 @@
 - 卸売 - 販路調査、在庫の適正化、酒販店への営業促進
 
 ## 設計書
-実装機能リスト
-https://docs.google.com/spreadsheets/d/1ymLDyPbyMveoGflUQDSxjBKlPfdUEJkY6Lia226nkTw/edit?usp=sharing
+- 実装機能リスト
+- https://docs.google.com/spreadsheets/d/1ymLDyPbyMveoGflUQDSxjBKlPfdUEJkY6Lia226nkTw/edit?usp=sharing
+- ER図・画面遷移図
+- https://drive.google.com/file/d/13DARsl_hLOt2lSxEnPsa_FOWRPtzHtaQ/view?usp=sharing
+- テーブル定義図
+- https://docs.google.com/spreadsheets/d/1_kji0WfBadt-BI8bfrXB-aqTMwjWpafvtX-T5_USU2A/edit?usp=sharing
 
 ## 開発環境
 - OS：Linux(CentOS)

@@ -1,0 +1,2 @@
+module Brewery::RelationshipsHelper
+end

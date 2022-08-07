@@ -1,0 +1,2 @@
+module Brewery::CommentsHelper
+end
