@@ -1,0 +1,10 @@
+<div>
+<p>酒造の方</p>
+<%= link_to "ログイン", new_brewery_session_path %>
+<%= link_to "新規のご登録", new_brewery_registration_path %>
+<p>販売店・飲食店の方</p>
+<%= link_to "ログイン", new_shop_session_path %>
+<%= link_to "新規のご登録", new_shop_registration_path %>
+<p>一般の方(閲覧のみ利用できます)</p>
+<%= link_to 'ゲストログイン', shop_guest_sign_in_path, method: :post %>
+</div>

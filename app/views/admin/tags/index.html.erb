@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6 mx-auto text-center">
+      <h3>タグ一覧・追加</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <% if @tag.errors.any? %>
+        空白での登録はできません。
+      <% end %>
+    <%= form_for(@tag, url: admin_tags_path) do |f| %>
+      <div class="form-group">
+        <%= f.label :name, "タグ名", class: 'font-weight-bold' %>
+        <%= f.text_field :name, class: 'ml-5' %><br>
+        <%= f.submit '新規登録', class: 'btn btn-success ml-5' %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <table class="table table-hover">
+        <thead class = "thead-light">
+          <tr>
+            <th>タグ一覧</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @tags.each do |tag| %>
+          <tr>
+            <td><%= tag.name %></td>
+            <td><%= link_to "編集", edit_admin_tag_path(tag) %></td>
+            <td><%= link_to '削除', admin_tag_path(tag), method: :delete, data: {confirm: "タグを削除しますか？"} %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

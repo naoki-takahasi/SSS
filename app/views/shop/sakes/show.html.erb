@@ -1,0 +1,33 @@
+<h2>商品詳細</h2>
+  <div>
+    <%= image_tag @sake.get_image, size: "200x200" %>
+  </div>
+  <table class="table">
+    <tr>
+      <th>商品名</th>
+      <th><%= @sake.name %></th>
+    </tr>
+    <tr>
+      <th>商品説明</th>
+      <th><%= @sake.explain %></th>
+    </tr>
+    <tr>
+      <th>お酒の種類</th>
+      <th><%= @sake.tag.name %></th>
+    </tr>
+    <tr>
+      <th>メーカー希望価格(税込)</th>
+      <th><%= (@sake.price * 1.1).round %>円</th>
+    </tr>
+    <tr>
+      <th>販売状況</th>
+      <th>
+        <% if @sake.is_active == true %>
+          販売中
+        <% else %>
+          休売
+        <% end %>
+      </th>
+    </tr>
+  </table>
+</div>

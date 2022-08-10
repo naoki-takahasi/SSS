@@ -1,0 +1,2 @@
+module Brewery::BreweriesHelper
+end

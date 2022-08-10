@@ -1,0 +1,26 @@
+<h2>酒造一覧</h2>
+ <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>商品名</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td>
+            <%= link_to shop_brewery_path(user) do %>
+              <%= image_tag user.get_image, size: "100x100" %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to shop_brewery_path(user) do %>
+              <%= user.name %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+ </table>

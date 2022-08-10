@@ -1,0 +1,51 @@
+<h2>商品新規登録</h2>
+          <% if @sake.errors.any? %>
+            <div id="error_explanation">
+              <h3><%= pluralize(@sake.errors.count, "error") %>　件のエラーが発生しました。</h3>
+              <ul>
+                <% @sake.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+    <%= form_with model: @sake, url: brewery_sakes_path, local: true do |f| %>
+      <div class="field">
+          <%= f.label "商品画像" %>
+          <span class="image-file"></span>
+          <%= f.file_field :image, accept: "image/*" %>
+     </div>
+
+      <div class="field">
+          <%= f.label "商品名" %>
+          <%= f.text_field :name %>
+      </div>
+
+      <div class="field">
+          <%= f.label "商品説明" %>
+      	<%= f.text_area :explain %>
+      </div>
+
+      <div class="field">
+      	<%= f.label "お酒の種類" %>
+      	<%= f.collection_select( :tag_id, Tag.all, :id, :name, options = { include_blank: '選択してください' } ) %>
+      </div>
+
+  　  <div class="field">
+          <%= f.label "税抜価格" %>
+      	<%= f.text_field :price %>円
+      </div>
+
+      <div class="field">
+          <%= f.label "販売ステータス" %>
+          <%= f.radio_button :is_active, true %>
+          <%= f.label :is_enabled, "販売中" %>
+          <%= f.radio_button :is_active, false %>
+          <%= f.label :is_enabled, "休売" %>
+      </div>
+
+      <div>
+      	<%= f.submit "新規登録" %>
+      </div>
+    <% end %>
+</div>
