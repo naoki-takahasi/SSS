@@ -9,7 +9,7 @@ class Sake < ApplicationRecord
     image
   end
 
-  belongs_to :brewery, optional: true
+  belongs_to :brewery
   belongs_to :tag
 
   validates :name, presence: true

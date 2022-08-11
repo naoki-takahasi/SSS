@@ -5,6 +5,6 @@ class Shop::BreweriesController < ApplicationController
 
   def show
     @user = Brewery.find(params[:id])
-    @sakes = @user.sakes.all
+    @sakes = @user.sakes
   end
 end

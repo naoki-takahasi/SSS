@@ -9,6 +9,7 @@ class Brewery::SakesController < ApplicationController
 
   def create
     @sake = Sake.new(sake_params)
+    @sake.brewery_id = current_brewery.id
     if @sake.save
       flash[:notice] = "タグの登録が完了しました"
       redirect_to brewery_sake_path(@sake.id)
