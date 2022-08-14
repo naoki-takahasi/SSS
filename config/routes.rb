@@ -21,10 +21,15 @@ Rails.application.routes.draw do
 
   #初期画面#
   root to: "homes#top"
+  get "about" => "homes#about", as: "about"
 
   #管理者ルーティング#
   namespace :admin do
+    root to: "homes#top"
     resources :tags, only: [:index, :create, :edit, :update, :destroy]
+    resources :breweries, only: [:show, :index, :edit, :update, :destroy]
+    resources :shops, only: [:show, :index, :edit, :update, :destroy]
+    resources :sakes, only: [:show, :index, :edit, :update, :destroy]
   end
 
   #酒造会員ルーティング#

@@ -1,0 +1,42 @@
+<h2>商品編集</h2>
+  <%= form_with model: @sake, url: admin_sake_path(@sake.id), local: true do |f| %>
+    <div class="field">
+      <%= f.label "商品画像" %>
+      <span class="image-file"></span>
+        <%= f.file_field :image, accept: "image/*" %>
+    </div>
+
+    <div class="field">
+      <%= f.label "商品名" %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= f.label "商品説明" %>
+      <%= f.text_area :explain %>
+    </div>
+
+    <div class="field">
+      <%= f.label "お酒の種類" %>
+      <%= f.collection_select( :tag_id, Tag.all, :id, :name, options = { include_blank: '選択してください' } ) %>
+    </div>
+
+  　<div class="field">
+      <%= f.label "税抜価格" %>
+      <%= f.text_field :price %>円
+    </div>
+
+    <div class="field">
+      <%= f.label "販売状況" %>
+      <%= f.radio_button :is_active, true %>
+        <%= f.label :is_enabled, "販売中" %>
+      <%= f.radio_button :is_active, false %>
+        <%= f.label :is_enabled, "休売" %>
+    </div>
+
+    <div>
+      <%= f.submit "変更を保存" %>
+    </div>
+  <% end %>
+  <%= link_to "削除", admin_sake_path(@sake.id), method: :delete, data: {confirm: "お酒を削除しますか？"} %>
+</div>

@@ -1,0 +1,65 @@
+<h2>酒造詳細</h2>
+  <table class="table">
+    <thead>
+      <tr>酒造の情報<tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row"></th>
+        <td><%= image_tag @user.get_image, size: "100x100" %></td>
+      </tr>
+      <tr>
+        <th scope="row">酒造名</th>
+        <td><%= @user.name %></td>
+      </tr>
+      <tr>
+        <th scope="row">住所</th>
+        <td>〒<%= @user.post %> <%= @user.address %></td>
+      </tr>
+      <tr>
+        <th scope="row">電話番号</th>
+        <td><%= @user.tel %></td>
+      </tr>
+      <tr>
+        <th scope="row">Email</th>
+        <td><%= @user.email %></td>
+      </tr>
+    </tbody>
+  </table>
+  <%= link_to "会員情報の編集", edit_admin_brewery_path(@user), class: "btn btn-outline-secondary btn-sm" %>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>商品名</th>
+        <th>メーカー希望価格(税込)</th>
+        <th>ジャンル</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @sakes.each do |sake| %>
+        <tr>
+          <td>
+            <%= link_to admin_sake_path(sake) do %>
+              <%= image_tag sake.get_image, size: "100x100" %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to admin_sake_path(sake) do %>
+              <%= sake.name %>
+            <% end %>
+          </td>
+          <td><%= (sake.price * 1.1).round %>円</td>
+          <td><%= sake.tag.name %></td>
+          <td>
+            <% if sake.is_active == true %>
+              販売中
+            <% else %>
+              休売
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+ </table>

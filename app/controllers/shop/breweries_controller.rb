@@ -1,6 +1,10 @@
 class Shop::BreweriesController < ApplicationController
   def index
-    @users = Brewery.all
+    if params[:search] == nil
+      @users = Brewery.all
+    else
+      @users = Brewery.where("name LIKE ? ",'%' + params[:search] + '%')
+    end
   end
 
   def show

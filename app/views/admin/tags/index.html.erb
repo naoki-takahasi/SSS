@@ -5,6 +5,14 @@
     </div>
   </div>
   <div class="row">
+    <div class="search_form col-3 mx-auto">
+      <%= form_with url: brewery_sakes_path, local: true, method: :get do |f| %>
+        <%= f.text_field :search, class: "form-control", placeholder: "タグ検索" %>
+        <%= f.submit "検索", class: "btn btn-light" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-6 mx-auto">
       <% if @tag.errors.any? %>
         空白での登録はできません。

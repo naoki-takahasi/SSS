@@ -1,6 +1,7 @@
 class Brewery::BreweriesController < ApplicationController
   def show
     @user = current_brewery
+    @sakes = @user.sakes
   end
 
   def edit

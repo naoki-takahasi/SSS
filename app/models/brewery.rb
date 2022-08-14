@@ -14,7 +14,7 @@ class Brewery < ApplicationRecord
     image
   end
 
-  has_many :sakes
+  has_many :sakes, dependent: :destroy
 
   validates :name,    presence: true
   validates :post,    presence: true

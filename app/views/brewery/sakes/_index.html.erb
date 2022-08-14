@@ -1,13 +1,4 @@
-<h2>商品一覧</h2>
-<div class="search_form col-3">
-  <%= form_with url: shop_sakes_path, local: true, method: :get do |f| %>
-    <%= f.text_field :search, class: "form-control", placeholder: "商品検索" %>
-    <%= f.select :search_tag_id, options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
-    {prompt: '絞り込み'}, {onchange: 'submit(this.form);'} %>
-    <%= f.submit "検索", class: "btn btn-light" %>
-  <% end %>
-</div>
- <table>
+<table>
     <thead>
       <tr>
         <th></th>
@@ -18,15 +9,15 @@
       </tr>
     </thead>
     <tbody>
-      <% @sakes.each do |sake| %>
+      <% sakes.each do |sake| %>
         <tr>
           <td>
-            <%= link_to shop_sake_path(sake) do %>
+            <%= link_to brewery_sake_path(sake) do %>
               <%= image_tag sake.get_image, size: "100x100" %>
             <% end %>
           </td>
           <td>
-            <%= link_to shop_sake_path(sake) do %>
+            <%= link_to brewery_sake_path(sake) do %>
               <%= sake.name %>
             <% end %>
           </td>
