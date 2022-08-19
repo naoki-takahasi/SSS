@@ -23,6 +23,10 @@ class Shop < ApplicationRecord
     end
   end
 
+  has_many :favorites,     dependent: :destroy
+  has_many :comments,      dependent: :destroy
+  has_many :relationships, dependent: :destroy
+
   validates :name,    presence: true
   validates :post,    presence: true
   validates :address, presence: true

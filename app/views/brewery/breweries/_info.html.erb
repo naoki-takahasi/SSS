@@ -1,0 +1,22 @@
+<tbody>
+  <tr>
+    <th scope="row"></th>
+    <td><%= image_tag user.get_image, size: "100x100" %></td>
+  </tr>
+  <tr>
+    <th scope="row">お名前</th>
+    <td><%= user.name %></td>
+  </tr>
+  <tr>
+    <th scope="row">ご住所</th>
+    <td>〒<%= user.post %> <%= user.address %></td>
+  </tr>
+  <tr>
+    <th scope="row">お電話番号</th>
+    <td><%= user.tel %></td>
+  </tr>
+  <tr>
+    <th scope="row">Email</th>
+    <td><%= user.email %></td>
+  </tr>
+</tbody>

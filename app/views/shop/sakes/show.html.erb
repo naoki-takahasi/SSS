@@ -30,4 +30,5 @@
       </th>
     </tr>
   </table>
-</div>
+  <%= render 'shop/comments/comment_form', sake: @sake, comment: @comment %>
+  <%= render 'shop/comments/comment_list', sake: @sake, comments: @comments %>

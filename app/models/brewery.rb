@@ -14,7 +14,12 @@ class Brewery < ApplicationRecord
     image
   end
 
-  has_many :sakes, dependent: :destroy
+  has_many :sakes,         dependent: :destroy
+  has_many :relationships, dependent: :destroy
+
+  def followed_by?(user)
+    relationships.exists?(shop_id: user.id)
+  end
 
   validates :name,    presence: true
   validates :post,    presence: true

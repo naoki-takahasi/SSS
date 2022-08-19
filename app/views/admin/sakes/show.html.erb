@@ -33,4 +33,5 @@
   <div>
     <%= link_to '編集', edit_admin_sake_path(@sake) %>
   </div>
+  <%= render 'admin/comments/comment_list',comments: @comments, shops: @shops, sake: @sake %>
 </div>

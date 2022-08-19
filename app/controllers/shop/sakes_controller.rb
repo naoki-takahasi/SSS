@@ -21,5 +21,9 @@ class Shop::SakesController < ApplicationController
       @sakes = Sake.where(is_active: true)
       render :index
     end
+    @comment = Comment.new
+    @comments = @sake.comments.where(shop_id: current_shop)
+
+
   end
 end

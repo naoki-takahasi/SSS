@@ -1,7 +1,7 @@
 class Brewery::BreweriesController < ApplicationController
   def show
     @user = current_brewery
-    @sakes = @user.sakes
+    @sakes = @user.sakes.page(params[:page])
   end
 
   def edit

@@ -1,6 +1,7 @@
 class Shop::ShopsController < ApplicationController
   def show
     @user = current_shop
+    @favorites = Favorite.where(shop_id: @user.id)
   end
 
   def edit

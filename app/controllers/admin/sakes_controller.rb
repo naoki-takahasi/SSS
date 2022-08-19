@@ -16,6 +16,9 @@ class Admin::SakesController < ApplicationController
 
   def show
     @sake = Sake.find(params[:id])
+    @comments = Comment.where(sake_id: @sake.id)
+    shops = @comments.pluck(:shop_id)
+    @shops = Shop.find(shops)
   end
 
   def edit

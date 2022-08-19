@@ -1,0 +1,33 @@
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>店舗名</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% users.each do |user| %>
+        <tr>
+          <td>
+            <%= link_to brewery_shop_path(user) do %>
+              <%= image_tag user.get_image, size: "100x100" %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to brewery_shop_path(user) do %>
+              <%= user.name %>
+            <% end %>
+          </td>
+          <td>
+
+            <% if current_brewery.followed_by?(user) %>
+              <%= link_to "フォロー外す", brewery_shop_relationships_path(user), method: :delete, class: "btn btn-success" %>
+            <% else %>
+              <%= link_to "フォローする", brewery_shop_relationships_path(user), method: :post, class: "btn btn-success" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

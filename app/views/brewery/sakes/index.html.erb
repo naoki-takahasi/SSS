@@ -1,11 +1,23 @@
-<h2>商品一覧</h2>
-<%= link_to "商品新規登録", new_brewery_sake_path %>
-<div class="search_form col-3">
-  <%= form_with url: brewery_sakes_path, local: true, method: :get do |f| %>
-    <%= f.text_field :search, class: "form-control", placeholder: "商品検索" %>
-    <%= f.select :search_tag_id, options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
-    {prompt: '絞り込み'}, {onchange: 'submit(this.form);'} %>
-    <%= f.submit "検索", class: "btn btn-light" %>
-  <% end %>
+<div class="container">
+  <div class="row mt-3">
+    <div class='mx-auto col-11 col-xl-10 col-lg-8 col-sm-6'>
+      <h2>商品一覧</h2>
+      <div class="search_form">
+        <%= form_with url: brewery_sakes_path, local: true, method: :get do |f| %>
+          <div class="row">
+            <div class="col-2">
+              <%= link_to "商品新規登録", new_brewery_sake_path, class: "btn btn-outline-success" %>
+            </div>
+            <div class="col-6 ml-auto d-flex justify-content-center">
+                <%= f.text_field :search, class: "form-control", placeholder: "商品検索" %>
+                <%= f.submit "検索", class: "btn btn-light ml-2" %>
+            </div>
+          </div>
+          <%= f.select :search_tag_id, options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+          {prompt: '絞り込み'}, {onchange: 'submit(this.form);'} %>
+        <% end %>
+      </div>
+      <%= render 'index', sakes: @sakes %>
+    </div>
+  </div>
 </div>
-<%= render 'index', sakes: @sakes %>

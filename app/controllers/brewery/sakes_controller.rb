@@ -3,15 +3,15 @@ class Brewery::SakesController < ApplicationController
     @user = current_brewery
     if params[:search] == nil
       if params[:search_tag_id] == nil
-        @sakes = @user.sakes
+        @sakes = @user.sakes.page(params[:page])
       else
-        @sakes = Tag.find(params[:tag_id]).sakes.where(brewery_id: @user)
+        @sakes = Tag.find(params[:tag_id]).sakes.where(brewery_id: @user).page(params[:page])
       end
     elsif params[:search_tag_id] == ""
-      @sakes = Sake.where("name LIKE ? ",'%' + params[:search] + '%').where(brewery_id: @user)
+      @sakes = Sake.where("name LIKE ? ",'%' + params[:search] + '%').where(brewery_id: @user).page(params[:page])
     else
       @search_tag_id = params[:search_tag_id]
-      @sakes = Sake.where("name LIKE ? ",'%' + params[:search] + '%').where(tag_id: @search_tag_id).where(brewery_id: @user)
+      @sakes = Sake.where("name LIKE ? ",'%' + params[:search] + '%').where(tag_id: @search_tag_id).where(brewery_id: @user).page(params[:page])
     end
   end
 
@@ -34,9 +34,17 @@ class Brewery::SakesController < ApplicationController
     @sake = Sake.find(params[:id])
     if @sake.is_active == false && @sake.brewery_id != current_brewery.id
       flash.now[:notice] = 'このお酒は現在販売しておりません。'
-      @sakes = Sake.all
+      @user = current_brewery
+      @sakes = @user.sakes.page(params[:page])
       render :index
     end
+    favorites = Favorite.where(sake_id: @sake.id)
+    favorite_shops = favorites.pluck(:shop_id)
+    @favorite_shops = Shop.find(favorite_shops)
+
+    @comments = Comment.where(sake_id: @sake.id)
+    comment_shops = @comments.pluck(:shop_id)
+    @comment_shops = Shop.find(comment_shops)
   end
 
   def edit

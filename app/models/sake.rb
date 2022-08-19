@@ -11,8 +11,14 @@ class Sake < ApplicationRecord
 
   belongs_to :brewery
   belongs_to :tag
+  has_many :favorites, dependent: :destroy
+  has_many :comments,  dependent: :destroy
 
   validates :name, presence: true
   validates :explain, presence: true
   validates :tag_id, presence: true
+
+  def favorited_by?(shop)
+    favorites.exists?(shop_id: shop.id)
+  end
 end

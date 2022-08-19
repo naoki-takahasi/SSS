@@ -15,6 +15,8 @@
         <th>メーカー希望価格(税込)</th>
         <th>ジャンル</th>
         <th>ステータス</th>
+        <th>取扱店数</th>
+        <th>コメント数</th>
       </tr>
     </thead>
     <tbody>
@@ -38,6 +40,12 @@
             <% else %>
               休売
             <% end %>
+          </td>
+          <td class=<%= "favorite-" + sake.id.to_s %> >
+            <%= render 'shop/favorites/favorite', sake: sake %>
+          </td>
+          <td>
+            <%= render 'shop/comments/comment', sake: sake %>
           </td>
         </tr>
       <% end %>

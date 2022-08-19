@@ -29,7 +29,9 @@ Rails.application.routes.draw do
     resources :tags, only: [:index, :create, :edit, :update, :destroy]
     resources :breweries, only: [:show, :index, :edit, :update, :destroy]
     resources :shops, only: [:show, :index, :edit, :update, :destroy]
-    resources :sakes, only: [:show, :index, :edit, :update, :destroy]
+    resources :sakes, only: [:show, :index, :edit, :update, :destroy] do
+      resources :comments, only: [:destroy]
+    end
   end
 
   #酒造会員ルーティング#
@@ -40,6 +42,10 @@ Rails.application.routes.draw do
     get "close" => "breweries#close", as: "close"
     patch "withdraw" => "breweries#withdraw", as: "withdraw"
 
+    resources :shops, only: [:show, :index] do
+      resource :relationships, only: [:create, :destroy]
+      get "followed" => "relationships#followed"
+    end
     resources :sakes, only: [:new, :create, :show, :edit, :index, :update]
   end
 
@@ -52,7 +58,10 @@ Rails.application.routes.draw do
     patch "withdraw" => "shops#withdraw", as: "withdraw"
 
     resources :breweries, only: [:show, :index]
-    resources :sakes, only: [:show, :index]
+    resources :sakes, only: [:show, :index] do
+      resources :comments, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
+    end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

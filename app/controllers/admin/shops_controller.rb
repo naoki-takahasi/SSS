@@ -5,6 +5,7 @@ class Admin::ShopsController < ApplicationController
 
   def show
     @user = Shop.find(params[:id])
+    @favorites = Favorite.where(shop_id: @user.id)
   end
 
   def edit

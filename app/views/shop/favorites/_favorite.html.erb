@@ -1,0 +1,9 @@
+<% if sake.favorited_by?(current_shop) %>
+  <%= link_to shop_sake_favorites_path(sake), method: :delete, remote: true do %>
+    ♥<%= sake.favorites.count %>
+  <% end %>
+<% else %>
+  <%= link_to shop_sake_favorites_path(sake), method: :post, remote: true do %>
+    ♡<%= sake.favorites.count %>
+  <% end %>
+<% end %>
