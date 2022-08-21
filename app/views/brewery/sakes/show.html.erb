@@ -1,41 +1,10 @@
 <div class="container">
   <div class="row mt-3">
-    <div class='col-3'>
-      <h2>商品詳細</h2>
-        <div>
-          <%= image_tag @sake.get_image, size: "200x200" %>
-        </div>
-        <table class="table">
-          <tr>
-            <th>商品名</th>
-            <td><%= @sake.name %></th>
-          </tr>
-          <tr>
-            <th>商品説明</th>
-            <td><%= @sake.explain %></th>
-          </tr>
-          <tr>
-            <th>お酒の種類</th>
-            <td><%= @sake.tag.name %></th>
-          </tr>
-          <tr>
-            <th>メーカー希望価格(税込)</th>
-            <td><%= (@sake.price * 1.1).round %>円</th>
-          </tr>
-          <tr>
-            <th>販売状況</th>
-            <td>
-              <% if @sake.is_active == true %>
-                販売中
-              <% else %>
-                休売
-              <% end %>
-            </td>
-          </tr>
-        </table>
+    <div class='col-md-4'>
+      <%= render 'sake', sake: @sake %>
       <%= link_to '編集', edit_brewery_sake_path(@sake), class: "btn btn-outline-secondary" %>
     </div>
-    <div class="col-8 offset-md-1">
+    <div class="col-md-7 offset-md-1">
       <div class="row">
         <h4>取扱店一覧</h4>
         <%= render 'brewery/shops/index', users: @favorite_shops %>

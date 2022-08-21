@@ -1,8 +1,11 @@
 <%= form_with model: [sake, comment], url: shop_sake_comments_path(sake.id), local: false do |f| %>
-  <div class="form-group">
-    <%= f.text_area :comment, class: 'form-control book_body' %>
-  </div>
-  <div class="form-group">
-    <%= f.submit class: 'btn btn-success' %>
+<h4>コメント入力</h4>
+  <div class='d-flex'>
+    <div class="form-group">
+      <%= f.text_area :comment, class: 'form-control comment-textarea' %>
+    </div>
+    <div class="form-group mt-4 ml-2">
+      <%= f.submit class: 'btn btn-success' %>
+    </div>
   </div>
 <% end %>

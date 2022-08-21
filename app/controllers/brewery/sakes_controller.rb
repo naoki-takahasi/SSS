@@ -41,8 +41,9 @@ class Brewery::SakesController < ApplicationController
     favorites = Favorite.where(sake_id: @sake.id)
     favorite_shops = favorites.pluck(:shop_id)
     @favorite_shops = Shop.find(favorite_shops)
+    @favorite_shops = Kaminari.paginate_array(@favorite_shops).page(params[:page])
 
-    @comments = Comment.where(sake_id: @sake.id)
+    @comments = Comment.where(sake_id: @sake.id).page(params[:page])
     comment_shops = @comments.pluck(:shop_id)
     @comment_shops = Shop.find(comment_shops)
   end

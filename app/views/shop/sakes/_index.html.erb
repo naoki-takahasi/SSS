@@ -1,0 +1,45 @@
+<table class='table'>
+  <thead>
+    <tr>
+      <th></th>
+      <th>商品名</th>
+      <th>メーカー希望価格(税込)</th>
+      <th>ジャンル</th>
+      <th>ステータス</th>
+      <th>取扱店数</th>
+      <th>コメント数</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% sakes.each do |sake| %>
+      <tr>
+        <td>
+          <%= link_to shop_sake_path(sake) do %>
+            <%= image_tag sake.get_image, size: "100x100" %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to shop_sake_path(sake) do %>
+            <%= sake.name %>
+          <% end %>
+        </td>
+        <td><%= (sake.price * 1.1).round %>円</td>
+        <td><%= sake.tag.name %></td>
+        <td>
+          <% if sake.is_active == true %>
+            販売中
+          <% else %>
+            休売
+          <% end %>
+        </td>
+        <td class=<%= "favorite-" + sake.id.to_s %> >
+          <%= render 'shop/favorites/favorite', sake: sake %>
+        </td>
+        <td>
+          <%= render 'shop/comments/comment', sake: sake %>
+        </td>
+      </tr>
+    <% end %>
+    <%= paginate sakes %>
+  </tbody>
+</table>

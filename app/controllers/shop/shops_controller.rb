@@ -1,7 +1,10 @@
 class Shop::ShopsController < ApplicationController
   def show
     @user = current_shop
-    @favorites = Favorite.where(shop_id: @user.id)
+    favorites = Favorite.where(shop_id: @user.id)
+    sakes = favorites.pluck(:sake_id)
+    @sakes = Sake.where(id: sakes).page(params[:page])
+    @breweries = Relationship.where(shop_id: @user.id).page(params[:page])
   end
 
   def edit

@@ -1,53 +1,22 @@
-<h2>商品一覧</h2>
-<div class="search_form col-3">
-  <%= form_with url: shop_sakes_path, local: true, method: :get do |f| %>
-    <%= f.text_field :search, class: "form-control", placeholder: "商品検索" %>
-    <%= f.select :search_tag_id, options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
-    {prompt: '絞り込み'}, {onchange: 'submit(this.form);'} %>
-    <%= f.submit "検索", class: "btn btn-light" %>
-  <% end %>
+<div class="container">
+  <div class="row mt-3">
+    <div class='mx-auto col-11 col-xl-10 col-lg-8 col-sm-6'>
+      <h2>商品一覧</h2>
+      <div class="search_form">
+        <%= form_with url: shop_sakes_path, local: true, method: :get do |f| %>
+          <div class="row">
+            <div class='col mt-3'>
+              <%= f.select :search_tag_id, options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+              {prompt: '絞り込み'}, {onchange: 'submit(this.form);'} %>
+            </div>
+            <div class="col d-flex mb-2">
+              <%= f.text_field :search, class: "form-control", placeholder: "商品検索" %>
+              <%= f.submit "検索", class: "btn btn-light ml-2" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <%= render 'index', sakes: @sakes %>
+    </div>
+  </div>
 </div>
- <table>
-    <thead>
-      <tr>
-        <th></th>
-        <th>商品名</th>
-        <th>メーカー希望価格(税込)</th>
-        <th>ジャンル</th>
-        <th>ステータス</th>
-        <th>取扱店数</th>
-        <th>コメント数</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @sakes.each do |sake| %>
-        <tr>
-          <td>
-            <%= link_to shop_sake_path(sake) do %>
-              <%= image_tag sake.get_image, size: "100x100" %>
-            <% end %>
-          </td>
-          <td>
-            <%= link_to shop_sake_path(sake) do %>
-              <%= sake.name %>
-            <% end %>
-          </td>
-          <td><%= (sake.price * 1.1).round %>円</td>
-          <td><%= sake.tag.name %></td>
-          <td>
-            <% if sake.is_active == true %>
-              販売中
-            <% else %>
-              休売
-            <% end %>
-          </td>
-          <td class=<%= "favorite-" + sake.id.to_s %> >
-            <%= render 'shop/favorites/favorite', sake: sake %>
-          </td>
-          <td>
-            <%= render 'shop/comments/comment', sake: sake %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
- </table>

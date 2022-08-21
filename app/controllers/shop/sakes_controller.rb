@@ -2,15 +2,15 @@ class Shop::SakesController < ApplicationController
   def index
     if params[:search] == nil
       if params[:search_tag_id] == nil
-        @sakes = Sake.where(is_active: true)
+        @sakes = Sake.where(is_active: true).page(params[:page])
       else
-        @sakes = Tag.find(params[:tag_id]).sakes.where(is_active: true)
+        @sakes = Tag.find(params[:tag_id]).sakes.where(is_active: true).page(params[:page])
       end
     elsif params[:search_tag_id] == ""
-      @sakes = Sake.where("name LIKE ? ",'%' + params[:search] + '%').where(is_active: true)
+      @sakes = Sake.where("name LIKE ? ",'%' + params[:search] + '%').where(is_active: true).page(params[:page])
     else
       @search_tag_id = params[:search_tag_id]
-      @sakes = Sake.where("name LIKE ? ",'%' + params[:search] + '%').where(tag_id: @search_tag_id).where(is_active: true)
+      @sakes = Sake.where("name LIKE ? ",'%' + params[:search] + '%').where(tag_id: @search_tag_id).where(is_active: true).page(params[:page])
     end
   end
 
@@ -22,8 +22,6 @@ class Shop::SakesController < ApplicationController
       render :index
     end
     @comment = Comment.new
-    @comments = @sake.comments.where(shop_id: current_shop)
-
-
+    @comments = @sake.comments.where(shop_id: current_shop).page(params[:page])
   end
 end

@@ -1,18 +1,30 @@
-<table>
-  <% comments.each do |comment| %>
-    <tr>
-      <td>
-        <%= link_to shop_my_page_path(current_shop.id) do %>
-          <%= image_tag current_shop.get_image, size: "100x100" %><br>
-          <%= current_shop.name %>
-        <% end %>
-      </td>
-      <td><%= comment.comment %></td>
-      <td>
-        <% if comment.shop_id == current_shop.id %>
-          <%= link_to 'Destroy', shop_sake_comment_path(sake, comment), method: :delete, remote: true, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
-        <% end %>
-      </td>
-    </tr>
+<table class="table comment_list">
+  <% if comments.blank? == false %>
+    <% comments.each do |comment| %>
+      <thead>
+        <th></th>
+        <th>店舗名</th>
+        <th>コメント</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <%= link_to shop_my_page_path(current_shop.id) do %>
+              <%= image_tag current_shop.get_image, size: "100x100" %><br>
+              <%= current_shop.name %>
+            <% end %>
+          </td>
+          <td><%= comment.comment %></td>
+          <td>
+            <% if comment.shop_id == current_shop.id %>
+              <%= link_to 'Destroy', shop_sake_comment_path(sake, comment), method: :delete, remote: true, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    <% end %>
+  <% else %>
+    <td>コメントがまだ投稿されていません。</td>
   <% end %>
+  <%= paginate comments %>
 </table>

@@ -20,7 +20,6 @@
             <% end %>
           </td>
           <td>
-
             <% if current_brewery.followed_by?(user) %>
               <%= link_to "フォロー外す", brewery_shop_relationships_path(user), method: :delete, class: "btn btn-success" %>
             <% else %>
@@ -29,5 +28,6 @@
           </td>
         </tr>
       <% end %>
+      <%= paginate users %>
     </tbody>
   </table>

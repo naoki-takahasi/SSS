@@ -1,0 +1,24 @@
+<table class='table'>
+    <thead>
+      <tr>
+        <th></th>
+        <th>酒造名</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% users.each do |user| %>
+        <tr>
+          <td>
+            <%= link_to shop_brewery_path(user) do %>
+              <%= image_tag user.get_image, size: "100x100" %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to shop_brewery_path(user) do %>
+              <%= user.name %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+ </table>

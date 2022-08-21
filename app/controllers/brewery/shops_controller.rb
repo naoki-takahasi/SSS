@@ -10,7 +10,7 @@ class Brewery::ShopsController < ApplicationController
   def show
     @user = Shop.find(params[:id])
     favorites = Favorite.where(shop_id: @user)
-    sakes = favorites.pluck(:sake_id)
-    @sakes = Sake.find(sakes).find(brewery_id: current_brewery.id).page(params[:page])
+    sake_ids = favorites.pluck(:sake_id)
+    @sakes = Sake.where(id: sake_ids, brewery_id: current_brewery.id).page(params[:page])
   end
 end

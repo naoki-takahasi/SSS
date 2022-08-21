@@ -1,2 +1,0 @@
-module Brewery::FavoritesHelper
-end

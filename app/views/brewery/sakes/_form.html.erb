@@ -1,0 +1,32 @@
+<div class="field">
+  <%= f.label "商品画像", class: "form-label" %>
+    <%= f.file_field :image, accept: "image/*" %>
+</div>
+
+<div class="field mt-2">
+  <%= f.label "商品名", class: "form-label" %>
+    <%= f.text_field :name, class: "form-control" %>
+</div>
+
+<div class="field mt-2">
+  <%= f.label "商品説明", class: "form-label" %>
+    <%= f.text_area :explain, class: "form-control" %>
+</div>
+
+<div class="field mt-2">
+  <%= f.label "お酒の種類", class: "form-label" %><br>
+	  <%= f.collection_select( :tag_id, Tag.all, :id, :name, options = { include_blank: '選択してください' } ) %>
+</div>
+
+<div class="field mt-2">
+  <%= f.label "税抜価格", class: "form-label" %>
+    <%= f.text_field :price, class: "form-control" %>
+</div>
+
+<div class="field mt-2">
+  <%= f.label "販売ステータス", class: "form-label" %>
+    <%= f.radio_button :is_active, true %>
+      <%= f.label :is_enabled, "販売中" %>
+    <%= f.radio_button :is_active, false %>
+      <%= f.label :is_enabled, "休売" %>
+</div>

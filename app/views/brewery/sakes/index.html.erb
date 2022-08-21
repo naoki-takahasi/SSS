@@ -13,8 +13,10 @@
                 <%= f.submit "検索", class: "btn btn-light ml-2" %>
             </div>
           </div>
-          <%= f.select :search_tag_id, options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
-          {prompt: '絞り込み'}, {onchange: 'submit(this.form);'} %>
+          <div class='mt-2'>
+            <%= f.select :search_tag_id, options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+            {prompt: '絞り込み'}, {onchange: 'submit(this.form);'} %>
+          </div>
         <% end %>
       </div>
       <%= render 'index', sakes: @sakes %>

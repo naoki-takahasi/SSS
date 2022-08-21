@@ -1,17 +1,29 @@
-<table class="table">
+<table class='table'>
   <% if comments.blank? == false %>
     <% comments.zip(shops).each do |comment, shop| %>
-      <tr>
-        <td>
-          <%= link_to brewery_shop_path(shop.id) do %>
-            <%= image_tag shop.get_image, size: "100x100" %>
-            <%= shop.name %>
-          <% end %>
-        </td>
-        <td><%= comment.comment %></td>
-      </tr>
+      <thead>
+        <th></th>
+        <th>店舗名</th>
+        <th>コメント</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <%= link_to brewery_shop_path(shop.id) do %>
+              <%= image_tag shop.get_image, size: "100x100" %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to brewery_shop_path(shop.id) do %>
+              <%= shop.name %>
+            <% end %>
+          </td>
+          <td><%= comment.comment %></td>
+        </tr>
+      </tbody>
     <% end %>
   <% else %>
     <td>コメントがまだ投稿されていません。</td>
   <% end %>
+  <%= paginate comments %>
 </table>

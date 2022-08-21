@@ -1,8 +1,17 @@
-<h2>店舗詳細</h2>
-  <table class="table">
-    <thead>
-      <tr>店舗の情報<tr>
-    </thead>
-    <%= render 'brewery/breweries/info', user: @user %>
-  </table>
-  <%= render 'brewery/sakes/index', sakes: @sakes %>
+<div class="container">
+  <div class="row mt-3">
+    <div class='col-md-3'>
+      <h2>店舗詳細</h2>
+      <table class="table">
+        <thead>
+          <tr>店舗の情報<tr>
+        </thead>
+        <%= render 'brewery/breweries/info', user: @user %>
+      </table>
+    </div>
+    <div class='col-md-8 offset-md-1'>
+      <h4>取扱商品一覧</h4>
+      <%= render 'brewery/sakes/index', sakes: @sakes %>
+    </div>
+  </div>
+</div>
