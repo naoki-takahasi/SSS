@@ -14,9 +14,10 @@ class Sake < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :comments,  dependent: :destroy
 
-  validates :name, presence: true
+  validates :name,    presence: true
   validates :explain, presence: true
-  validates :tag_id, presence: true
+  validates :tag_id,  presence: true
+  validates :price,   presence: true
 
   def favorited_by?(shop)
     favorites.exists?(shop_id: shop.id)

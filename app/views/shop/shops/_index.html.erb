@@ -1,9 +1,8 @@
-<table class='table'>
-  <% if users.blank? == false %>
+  <table class="table">
     <thead>
       <tr>
         <th></th>
-        <th>酒造名</th>
+        <th>店舗名</th>
         <th>ステータス</th>
       </tr>
     </thead>
@@ -11,12 +10,12 @@
       <% users.each do |user| %>
         <tr>
           <td>
-            <%= link_to shop_brewery_path(user) do %>
+            <%= link_to shop_my_page_path(user) do %>
               <%= image_tag user.get_image, size: "100x100" %>
             <% end %>
           </td>
           <td>
-            <%= link_to shop_brewery_path(user) do %>
+            <%= link_to shop_my_page_path(user) do %>
               <%= user.name %>
             <% end %>
           </td>
@@ -29,9 +28,6 @@
           </td>
         </tr>
       <% end %>
-  <% else %>
-    <td>酒造が見つかりませんでした。</td>
-  <% end %>
-  <%= paginate users %>
+      <%= paginate users %>
     </tbody>
-</table>
+  </table>

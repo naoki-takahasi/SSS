@@ -5,7 +5,7 @@
       <% if @users.blank? == false %>
         <%= render 'brewery/shops/index', users: @users %>
       <% else %>
-        <p>ユーザーはいません</p>
+        <p>フォローしたお店がありません。</p>
       <% end %>
     </div>
     <div class='col-md-6'>
@@ -13,7 +13,7 @@
       <% if @shops.blank? == false %>
         <%= render 'brewery/shops/index', users: @shops %>
       <% else %>
-        <p>ユーザーはいません</p>
+        <p>お取り扱いのお店はございません。</p>
       <% end %>
     </div>
   </div>

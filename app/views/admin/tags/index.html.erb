@@ -1,46 +1,46 @@
 <div class="container">
   <div class="row">
-    <div class="col-6 mx-auto text-center">
-      <h3>タグ一覧・追加</h3>
-    </div>
-  </div>
-  <div class="row">
-    <div class="search_form col-3 mx-auto">
-      <%= form_with url: brewery_sakes_path, local: true, method: :get do |f| %>
-        <%= f.text_field :search, class: "form-control", placeholder: "タグ検索" %>
-        <%= f.submit "検索", class: "btn btn-light" %>
-      <% end %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-6 mx-auto">
-      <% if @tag.errors.any? %>
-        空白での登録はできません。
-      <% end %>
-    <%= form_for(@tag, url: admin_tags_path) do |f| %>
-      <div class="form-group">
-        <%= f.label :name, "タグ名", class: 'font-weight-bold' %>
-        <%= f.text_field :name, class: 'ml-5' %><br>
-        <%= f.submit '新規登録', class: 'btn btn-success ml-5' %>
+    <div class="mx-auto col-sm-6">
+      <h3 class="text-center">タグ一覧・追加</h3>
+      <div class='row'>
+        <div class="mt-2 form-inline">
+          <div class="form-group">
+            <%= form_with url: admin_tags_path, local: true, method: :get do |f| %>
+              <%= f.text_field :search, class: "form-control", placeholder: "タグ検索" %>
+              <%= f.submit "検索", class: "btn btn-light my-2" %>
+            <% end %>
+          </div>
+        </div>
       </div>
-    <% end %>
+      <div class='row'>
+        <%= form_with model: @tag, url: admin_tags_path do |f| %>
+          <%= f.text_field :name, class: 'form-control', placeholder: "新規タグ入力" %>
+          <%= f.submit '新規登録', class: 'btn btn-success mt-2' %>
+        <% end %>
+        <% if @tag.errors.any? %>
+          空白での登録はできません。
+        <% end %>
+      </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row mt-2">
     <div class="col-6 mx-auto">
-      <table class="table table-hover">
-        <thead class = "thead-light">
+      <table class="table">
+        <thead>
+          <tr></tr>
           <tr>
             <th>タグ一覧</th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           <% @tags.each do |tag| %>
-          <tr>
-            <td><%= tag.name %></td>
-            <td><%= link_to "編集", edit_admin_tag_path(tag) %></td>
-            <td><%= link_to '削除', admin_tag_path(tag), method: :delete, data: {confirm: "タグを削除しますか？"} %></td>
-          </tr>
+            <tr>
+              <td><%= tag.name %></td>
+              <td><%= link_to "編集", edit_admin_tag_path(tag), class: 'btn btn-outline-secondary btn-sm' %></td>
+              <td><%= link_to '削除', admin_tag_path(tag), method: :delete, data: {confirm: "タグを削除しますか？"}, class: 'btn btn-danger btn-sm' %></td>
+            </tr>
           <% end %>
         </tbody>
       </table>

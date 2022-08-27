@@ -1,37 +1,12 @@
-<h2>商品詳細</h2>
-  <div>
-    <%= image_tag @sake.get_image, size: "200x200" %>
+<div class="container">
+  <div class="row mt-3">
+    <div class='col-md-4'>
+      <%= render 'brewery/sakes/sake', sake: @sake %>
+      <%= link_to '編集', edit_admin_sake_path(@sake), class: "btn btn-outline-secondary" %>
+    </div>
+    <div class="col-md-7 offset-md-1">
+      <h4>コメント一覧</h4>
+      <%= render 'admin/comments/comment_list', comments: @comments, shops: @shops, sake: @sake %>
+    </div>
   </div>
-  <table class="table">
-    <tr>
-      <th>商品名</th>
-      <th><%= @sake.name %></th>
-    </tr>
-    <tr>
-      <th>商品説明</th>
-      <th><%= @sake.explain %></th>
-    </tr>
-    <tr>
-      <th>お酒の種類</th>
-      <th><%= @sake.tag.name %></th>
-    </tr>
-    <tr>
-      <th>メーカー希望価格(税込)</th>
-      <th><%= (@sake.price * 1.1).round %>円</th>
-    </tr>
-    <tr>
-      <th>販売状況</th>
-      <th>
-        <% if @sake.is_active == true %>
-          販売中
-        <% else %>
-          休売
-        <% end %>
-      </th>
-    </tr>
-  </table>
-  <div>
-    <%= link_to '編集', edit_admin_sake_path(@sake) %>
-  </div>
-  <%= render 'admin/comments/comment_list',comments: @comments, shops: @shops, sake: @sake %>
 </div>

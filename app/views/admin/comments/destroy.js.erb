@@ -1,2 +1,1 @@
-$('.comment').html("<%= j(render 'shop/comments/comment', sake: @comment.sake) %>")
-$('.comment_list').html("<%= j(render 'shop/comments/comment_list', sake: @comment.sake) %>")
+$('.comment_list').html("<%= j(render 'admin/comments/comment_list', sake: @comment.sake, comments: @comments) %>")

@@ -5,12 +5,17 @@
         <th></th>
         <th>店舗名</th>
         <th>コメント</th>
+        <th></th>
       </thead>
       <tbody>
         <tr>
           <td>
             <%= link_to shop_my_page_path(current_shop.id) do %>
-              <%= image_tag current_shop.get_image, size: "100x100" %><br>
+              <%= image_tag current_shop.get_image, size: "100x100" %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to shop_my_page_path(current_shop.id) do %>
               <%= current_shop.name %>
             <% end %>
           </td>
@@ -26,5 +31,4 @@
   <% else %>
     <td>コメントがまだ投稿されていません。</td>
   <% end %>
-  <%= paginate comments %>
 </table>

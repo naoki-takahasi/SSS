@@ -36,11 +36,11 @@ Rails.application.routes.draw do
 
   #酒造会員ルーティング#
   namespace :brewery do
-    get "my_page" => "breweries#show", as: "my_page"
-    get "my_page/edit" => "breweries#edit", as: "my_page/edit"
-    patch "my_page" => "breweries#update", as: "my_page/update"
-    get "close" => "breweries#close", as: "close"
-    patch "withdraw" => "breweries#withdraw", as: "withdraw"
+    get "my_page/:id" => "breweries#show", as: "my_page"
+    get "my_page/:id/edit" => "breweries#edit", as: "my_page/edit"
+    patch "my_page/:id" => "breweries#update", as: "my_page/update"
+    get "close/:id" => "breweries#close", as: "close"
+    patch "withdraw/:id" => "breweries#withdraw", as: "withdraw"
 
     resources :shops, only: [:show, :index] do
       resource :relationships, only: [:create, :destroy]
@@ -51,11 +51,11 @@ Rails.application.routes.draw do
 
   #販売会員ルーティング#
   namespace :shop do
-    get "my_page" => "shops#show", as: "my_page"
-    get "my_page/edit" => "shops#edit", as: "my_page/edit"
-    patch "my_page" => "shops#update", as: "my_page/update"
-    get "close" => "shops#close", as: "close"
-    patch "withdraw" => "shops#withdraw", as: "withdraw"
+    get "my_page/:id" => "shops#show", as: "my_page"
+    get "my_page/:id/edit" => "shops#edit", as: "my_page/edit"
+    patch "my_page/:id" => "shops#update", as: "my_page/update"
+    get "close/:id" => "shops#close", as: "close"
+    patch "withdraw/:id" => "shops#withdraw", as: "withdraw"
 
     resources :breweries, only: [:show, :index]
     resources :sakes, only: [:show, :index] do

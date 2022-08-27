@@ -1,0 +1,33 @@
+<table class='table'>
+  <thead>
+    <tr>
+      <th></th>
+      <th>酒造名</th>
+      <th>ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.each do |user| %>
+      <tr>
+        <td>
+          <%= link_to admin_brewery_path(user) do %>
+            <%= image_tag user.get_image, size: "100x100" %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to admin_brewery_path(user) do %>
+            <%= user.name %>
+          <% end %>
+        </td>
+        <td>
+          <% if user.is_enable == true %>
+            営業中
+          <% else %>
+            閉店
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    <%= paginate users %>
+  </tbody>
+</table>

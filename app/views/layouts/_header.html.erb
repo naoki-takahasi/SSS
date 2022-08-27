@@ -35,12 +35,19 @@
             <% end %>
           </li>
         <% elsif shop_signed_in? %>
-          <p id="notice" class='m-auto text-dark text-center'><%= notice %></p>
-          <li>
-            <%= link_to shop_my_page_path(current_shop), class: 'nav-link text-dark' do %>
-              <i class="fas fa-wine-glass"></i> マイページ(取扱一覧)
+          <p id="notice" class='m-auto text-dark text-center'>
+            <% if current_shop.name == "閲覧者" %>
+              (閲覧者)
             <% end %>
-          </li>
+            <%= notice %>
+          </p>
+          <% if current_shop.name != "閲覧者" %>
+            <li>
+              <%= link_to shop_my_page_path(current_shop), class: 'nav-link text-dark' do %>
+                <i class="fas fa-wine-glass"></i> マイページ(取扱一覧)
+              <% end %>
+            </li>
+          <% end %>
           <li>
             <%= link_to shop_breweries_path, class: 'nav-link text-dark' do %>
               <i class="fas fa-industry"></i> 酒造一覧

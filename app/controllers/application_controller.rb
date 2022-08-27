@@ -1,13 +1,12 @@
 class ApplicationController < ActionController::Base
-
   before_action :configure_permitted_parameters , if: :devise_controller?
 
   def after_sign_in_path_for(resource)
     case resource
     when Brewery
-      brewery_my_page_path
+      brewery_my_page_path(current_brewery)
     when Shop
-      shop_my_page_path
+      shop_my_page_path(current_shop)
     when Admin
       admin_root_path
     end

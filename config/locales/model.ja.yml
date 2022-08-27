@@ -1,0 +1,25 @@
+ja:
+  activerecord:
+    models:
+      brewery: 酒造会員
+      shop: 店舗会員
+
+    attributes:
+      brewery:
+        name: 酒造名
+        post: 郵便番号
+        address: 住所
+        tel: 電話番号
+        password: パスワード
+      shop:
+        name: 店舗名
+        post: 郵便番号
+        address: 住所
+        tel: 電話番号
+        password: パスワード
+      sake:
+        name: 名前
+        explain: 説明
+        price: 税抜価格
+        tag: 種類名称
+        tag_id: 種類名称(参照データ)

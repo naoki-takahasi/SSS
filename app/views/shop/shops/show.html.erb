@@ -9,7 +9,7 @@
         </thead>
         <%= render 'brewery/breweries/info', user: @user %>
       </table>
-      <% if @user.name != "閲覧者" %>
+      <% if current_shop.name != "閲覧者" %>
         <div class="d-flex justify-content-center">
           <%= link_to "会員情報の編集", shop_my_page_edit_path, class: "btn btn-outline-secondary btn-sm" %>
         </div>

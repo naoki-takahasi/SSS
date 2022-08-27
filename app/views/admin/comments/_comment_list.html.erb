@@ -1,16 +1,32 @@
-<table>
-  <% comments.zip(shops).each do |comment, shop| %>
-    <tr>
-      <td>
-        <%= link_to admin_shop_path(comment.shop_id) do %>
-          <%= image_tag shop.get_image, size: "100x100" %><br>
-          <%= shop.name %>
-        <% end %>
-      </td>
-      <td><%= comment.comment %></td>
-      <td>
-        <%= link_to 'Destroy', admin_sake_comment_path(sake, comment), method: :delete, remote: true, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
-      </td>
-    </tr>
+<table class='table comment_list'>
+  <% if comments.blank? == false %>
+    <% comments.zip(shops).each do |comment, shop| %>
+      <thead>
+        <th></th>
+        <th>店舗名</th>
+        <th>コメント</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <%= link_to admin_shop_path(shop.id) do %>
+              <%= image_tag shop.get_image, size: "100x100" %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to admin_shop_path(shop.id) do %>
+              <%= shop.name %>
+            <% end %>
+          </td>
+          <td><%= comment.comment %></td>
+          <td>
+            <%= link_to '削除', admin_sake_comment_path(sake, comment), method: :delete, remote: true, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
+          </td>
+        </tr>
+      </tbody>
+    <% end %>
+  <% else %>
+    <td>コメントがまだ投稿されていません。</td>
   <% end %>
 </table>

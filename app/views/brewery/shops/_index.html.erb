@@ -1,8 +1,10 @@
-  <table class="table">
+<table class="table">
+  <% if users.blank? == false %>
     <thead>
       <tr>
         <th></th>
         <th>店舗名</th>
+        <th>ステータス</th>
         <th></th>
       </tr>
     </thead>
@@ -20,6 +22,13 @@
             <% end %>
           </td>
           <td>
+            <% if user.is_enable == true %>
+              営業中
+            <% else %>
+              閉店
+            <% end %>
+          </td>
+          <td>
             <% if current_brewery.followed_by?(user) %>
               <%= link_to "フォロー外す", brewery_shop_relationships_path(user), method: :delete, class: "btn btn-success" %>
             <% else %>
@@ -29,5 +38,8 @@
         </tr>
       <% end %>
       <%= paginate users %>
+  <% else %>
+      <td>取り扱っている店舗はありません。</td>
+  <% end %>
     </tbody>
-  </table>
+</table>
