@@ -6,6 +6,7 @@
       <th>メーカー希望価格(税込)</th>
       <th>ジャンル</th>
       <th>ステータス</th>
+      <th>コメント数</th>
     </tr>
   </thead>
   <tbody>
@@ -30,6 +31,7 @@
             休売
           <% end %>
         </td>
+        <td><%= render 'brewery/comments/comment', sake: sake %></td>
       </tr>
     <% end %>
     <%= paginate sakes %>
