@@ -7,7 +7,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-        <% if brewery_signed_in? %>
+        <% if brewery_signed_in? %> <!--酒造会員-->
           <p id="notice" class='m-auto text-dark text-center'><%= notice %></p>
           <li>
             <%= link_to brewery_my_page_path(current_brewery), class: 'nav-link text-dark' do %>
@@ -34,14 +34,14 @@
               <i class="fas fa-sign-out-alt"></i> ログアウト
             <% end %>
           </li>
-        <% elsif shop_signed_in? %>
+        <% elsif shop_signed_in? %> <!--店舗・飲食店会員、ゲスト-->
           <p id="notice" class='m-auto text-dark text-center'>
-            <% if current_shop.name == "閲覧者" %>
+            <% if current_shop.name == "閲覧者" %> <!--閲覧者以外-->
               (閲覧者)
             <% end %>
             <%= notice %>
           </p>
-          <% if current_shop.name != "閲覧者" %>
+          <% if current_shop.name != "閲覧者" %> <!--閲覧者以外-->
             <li>
               <%= link_to shop_my_page_path(current_shop), class: 'nav-link text-dark' do %>
                 <i class="fas fa-wine-glass"></i> マイページ(取扱一覧)
@@ -63,7 +63,7 @@
               <i class="fas fa-sign-out-alt"></i> ログアウト
             <% end %>
           </li>
-        <% elsif admin_signed_in? %>
+        <% elsif admin_signed_in? %> <!--管理者-->
           <p id="notice" class='m-auto text-danger'>
             (管理者)<br><%= notice %>
           </p>
@@ -87,7 +87,7 @@
               <i class="fas fa-wine-glass"></i> 販売店・飲食店一覧
             <% end %>
           </li>
-        <% else %>
+        <% else %> <!--未ログイン-->
           <p id="notice" class='m-auto text-dark text-center'><%= notice %></p>
           <li>
             <%= link_to new_brewery_session_path, class: 'nav-link text-dark' do %>

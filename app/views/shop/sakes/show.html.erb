@@ -5,14 +5,14 @@
     </div>
       <div class="col-md-7 offset-md-1">
         <div class="row">
-          <% if current_shop.name != "閲覧者" %>
+          <% if current_shop.name != "閲覧者" %> <!--閲覧者以外-->
             <%= render 'shop/comments/comment_form', sake: @sake, comment: @comment %>
           <% else %>
             <h3>取り扱っている店鋪</h3>
             <%= render 'shop/shops/index', users: @users %>
           <% end %>
         </div>
-        <% if current_shop.name != "閲覧者" %>
+        <% if current_shop.name != "閲覧者" %> <!--閲覧者以外-->
           <div class="row">
             <h4>コメント一覧</h4>
             <%= render 'shop/comments/comment_list', sake: @sake, comments: @comments %>

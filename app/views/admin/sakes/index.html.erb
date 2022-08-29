@@ -5,7 +5,7 @@
       <div class="search_form">
         <%= form_with url: admin_sakes_path, local: true, method: :get do |f| %>
           <div class="row">
-            <div class='col mt-3'>
+            <div class='col mt-3'> <!--選択で発火-->
               <%= f.select :search_tag_id, options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
               {prompt: '絞り込み'}, {onchange: 'submit(this.form);'} %>
             </div>

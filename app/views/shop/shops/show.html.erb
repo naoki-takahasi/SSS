@@ -1,7 +1,9 @@
 <div class="container">
   <div class="row mt-3">
     <div class='col-md-3'>
-      <h4 class="text-center"><%= @user.name %>様<br>トップページ</h4>
+      <h4 class="text-center"><%= @user.name %>
+        <% if current_shop.name != "閲覧者" %>様<br>トップページ<% end %>
+      </h4>
 
       <table class="table">
         <thead>
@@ -9,7 +11,7 @@
         </thead>
         <%= render 'brewery/breweries/info', user: @user %>
       </table>
-      <% if current_shop.name != "閲覧者" %>
+      <% if current_shop.name != "閲覧者" %> <!--閲覧者以外-->
         <div class="d-flex justify-content-center">
           <%= link_to "会員情報の編集", shop_my_page_edit_path, class: "btn btn-outline-secondary btn-sm" %>
         </div>

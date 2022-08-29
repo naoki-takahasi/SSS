@@ -1,5 +1,5 @@
 <table class='table'>
-  <% if sakes.blank? == false %>
+  <% if sakes.blank? == false %> <!--日本酒が存在する場合-->
     <thead>
       <tr>
         <th></th>
@@ -7,7 +7,7 @@
         <th>メーカー希望価格(税込)</th>
         <th>ジャンル</th>
         <th>ステータス</th>
-        <% if current_shop.name != "閲覧者" %>
+        <% if current_shop.name != "閲覧者" %> <!--閲覧者以外-->
           <th>取扱店数</th>
           <th>コメント数</th>
         <% end %>
@@ -35,7 +35,7 @@
               休売
             <% end %>
           </td>
-          <% if current_shop.name != "閲覧者" %>
+          <% if current_shop.name != "閲覧者" %> <!--閲覧者以外-->
             <td class=<%= "favorite-" + sake.id.to_s %> >
               <%= render 'shop/favorites/favorite', sake: sake %>
             </td>

@@ -1,5 +1,5 @@
 <table class='table'>
-  <% if comments.blank? == false %>
+  <% if comments.blank? == false %> <!--コメントが存在する場合-->
     <% comments.zip(shops).each do |comment, shop| %>
       <thead>
         <th></th>
