@@ -7,7 +7,7 @@
         <% end %>
           <%= form_with model: @tag, url: admin_tag_path, method: :patch do |f| %>
             <%= f.text_field :name, class: 'form-control', placeholder: "タグを入力してください" %>
-            <%= f.submit '変更を保存', class: 'btn btn-success' %>
+            <%= f.submit '変更を保存', class: 'btn btn-success mt-2' %>
           <% end %>
     </div>
   </div>

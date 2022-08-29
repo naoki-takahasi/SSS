@@ -61,6 +61,14 @@ class Brewery::SakesController < ApplicationController
     @sake = Sake.find(params[:id]) #該当する日本酒
     if @sake.update(sake_params)
       flash[:notice] = "お酒の情報を変更しました。"
+      #取扱店一覧
+      favorites = Favorite.where(sake_id: @sake.id) #日本酒から取扱店情報を検索
+      favorite_shops = favorites.pluck(:shop_id) #取扱店情報から店舗を抽出
+      @favorite_shops = Shop.where(id: favorite_shops).page(params[:page]) #店舗を検索
+      #コメント一覧
+      @comments = Comment.where(sake_id: @sake.id).page(params[:page]) #該当する日本酒のコメントを検索
+      comment_shops = @comments.pluck(:shop_id) #コメントから店舗を抽出
+      @comment_shops = Shop.find(comment_shops) #店舗を検索
       render :show
     else
       render :edit
