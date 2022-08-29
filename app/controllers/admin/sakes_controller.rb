@@ -21,8 +21,6 @@ class Admin::SakesController < ApplicationController
   def show
     @sake = Sake.find(params[:id]) #該当する日本酒
     @comments = Comment.where(sake_id: @sake.id) #日本酒のコメントを検索
-    shops = @comments.pluck(:shop_id) #コメントから店舗を抽出
-    @shops = Shop.where(id: shops) #コメントした店舗の検索
   end
 
   def edit

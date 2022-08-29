@@ -1,6 +1,6 @@
 <table class='table comment_list'>
   <% if comments.blank? == false %>
-    <% comments.zip(shops).each do |comment, shop| %>
+    <% comments.each do |comment| %>
       <thead>
         <th></th>
         <th>店舗名</th>
@@ -10,13 +10,13 @@
       <tbody>
         <tr>
           <td>
-            <%= link_to admin_shop_path(shop.id) do %>
-              <%= image_tag shop.get_image, size: "100x100" %>
+            <%= link_to admin_shop_path(comment.shop_id) do %>
+              <%= image_tag comment.shop.get_image, size: "100x100" %>
             <% end %>
           </td>
           <td>
-            <%= link_to admin_shop_path(shop.id) do %>
-              <%= shop.name %>
+            <%= link_to admin_shop_path(comment.shop_id) do %>
+              <%= comment.shop.name %>
             <% end %>
           </td>
           <td><%= comment.comment %></td>
