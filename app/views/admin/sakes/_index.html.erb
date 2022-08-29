@@ -14,12 +14,12 @@
       <% sakes.each do |sake| %>
         <tr>
           <td>
-            <%= link_to admin_sake_path(sake) do %>
+            <%= link_to admin_sake_path(sake.id) do %>
               <%= image_tag sake.get_image, size: "100x100" %>
             <% end %>
           </td>
           <td>
-            <%= link_to admin_sake_path(sake) do %>
+            <%= link_to admin_sake_path(sake.id) do %>
               <%= sake.name %>
             <% end %>
           </td>
