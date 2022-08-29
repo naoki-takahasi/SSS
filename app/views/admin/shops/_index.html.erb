@@ -1,33 +1,37 @@
 <table class='table'>
-  <thead>
-    <tr>
-      <th></th>
-      <th>店舗名</th>
-      <th>ステータス</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% users.each do |user| %>
+  <% if users.blank? == false %>
+    <thead>
       <tr>
-        <td>
-          <%= link_to admin_shop_path(user) do %>
-            <%= image_tag user.get_image, size: "100x100" %>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to admin_shop_path(user) do %>
-            <%= user.name %>
-          <% end %>
-        </td>
-        <td>
-          <% if user.is_enable == true %>
-            営業中
-          <% else %>
-            閉店
-          <% end %>
-        </td>
+        <th></th>
+        <th>店舗名</th>
+        <th>ステータス</th>
       </tr>
-    <% end %>
+    </thead>
+    <tbody>
+      <% users.each do |user| %>
+        <tr>
+          <td>
+            <%= link_to admin_shop_path(user) do %>
+              <%= image_tag user.get_image, size: "100x100" %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to admin_shop_path(user) do %>
+              <%= user.name %>
+            <% end %>
+          </td>
+          <td>
+            <% if user.is_enable == true %>
+              営業中
+            <% else %>
+              閉店
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+  <% else %>
+    <td>取り扱っている店舗はありません。</td>
+  <% end %>
     <%= paginate users %>
-  </tbody>
+    </tbody>
 </table>

@@ -32,8 +32,7 @@ class Admin::SakesController < ApplicationController
   def update
     @sake = Sake.find(params[:id]) #該当する日本酒
     if @sake.update(sake_params)
-      flash[:notice] = "お酒の情報を変更しました。"
-      render :show
+      redirect_to admin_sake_path(@sake.id), notice: "お酒の情報を変更しました。"
     else
       render :edit
     end
@@ -43,9 +42,7 @@ class Admin::SakesController < ApplicationController
     @sake = Sake.find(params[:id]) #該当する日本酒
     if @sake.is_active == false #日本酒が休売している場合
       @sake.destroy
-      flash[:notice] = "お酒の削除が完了しました。"
-      @sakes = Sake.page(params[:page])
-      render :index
+      redirect_to admin_sakes_path, notice: "お酒の削除が完了しました。"
     else
       flash[:notice] = "このお酒はまだ販売しております。"
       render :edit

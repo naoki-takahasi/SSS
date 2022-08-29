@@ -22,12 +22,7 @@ class Admin::ShopsController < ApplicationController
   def update
     @user = Shop.find(params[:id]) #該当する店舗
     if @user.update(shops_params)
-      flash.now[:notice] = "会員情報の変更が完了しました。"
-      #取扱品一覧
-      favorites = Favorite.where(shop_id: @user) #店舗の取扱品を検索
-      sakes = favorites.pluck(:sake_id) #取扱品から日本酒の情報を抽出
-      @sakes = Sake.where(id: sakes).page(params[:page]) #取り扱ってる日本酒の検索
-      render :show
+      redirect_to admin_shop_path(@user.id), notice: "会員情報の変更が完了しました。"
     else
       render :edit
     end
@@ -37,9 +32,7 @@ class Admin::ShopsController < ApplicationController
     @user = Shop.find(params[:id]) #該当する店舗
     if @user.is_enable == false #店舗か閉店している場合
       @user.destroy
-      flash[:notice] = "会員の削除が完了しました。"
-      @users = Shop.page(params[:page])
-      render :index
+      redirect_to admin_shops_path, notice: "会員の削除が完了しました。"
     else
       flash[:notice] = "この店舗は営業しております。"
       render :edit

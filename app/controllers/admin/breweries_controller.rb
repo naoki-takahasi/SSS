@@ -21,9 +21,7 @@ class Admin::BreweriesController < ApplicationController
   def update
     @user = Brewery.find(params[:id]) #該当する酒造
     if @user.update(breweries_params)
-      flash.now[:notice] = "会員情報の変更が完了しました。"
-      @sakes = @user.sakes.page(params[:page]) #該当した酒造の商品一覧
-      render :show
+      redirect_to admin_brewery_path(@user.id), notice: "会員情報の変更が完了しました。"
     else
       render :edit
     end
@@ -33,9 +31,7 @@ class Admin::BreweriesController < ApplicationController
     @user = Brewery.find(params[:id]) #該当する酒造
     if @user.is_enable == false #酒造が退会していた場合
       @user.destroy
-      flash[:notice] = "会員の削除が完了しました。"
-      @users = Brewery.page(params[:page]) #酒造全表示
-      render :index
+      redirect_to admin_breweries_path, notice: "会員の削除が完了しました。"
     else
       flash[:notice] = "この酒造は営業しております。"
       render :edit

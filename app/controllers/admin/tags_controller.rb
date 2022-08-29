@@ -12,8 +12,7 @@ class Admin::TagsController < ApplicationController
   def create
     @tag = Tag.new(tag_params)
     if @tag.save
-      flash[:notice] = "タグの登録が完了しました。"
-      redirect_to admin_tags_path
+      redirect_to admin_tags_path, notice: "タグの登録が完了しました。"
     else
       @tags = Tag.all #タグ全表示
       render :index
@@ -27,18 +26,16 @@ class Admin::TagsController < ApplicationController
   def update
     @tag = Tag.find(params[:id]) #該当するタグ
     if @tag.update(tag_params)
-       flash[:notice] = "タグの名称を変更しました。"
-       redirect_to admin_tags_path
+      redirect_to admin_tags_path, notice: "タグの名称を変更しました。"
     else
-       render :edit
+      render :edit
     end
   end
 
   def destroy
     @tag = Tag.find(params[:id]) #該当するタグ
     @tag.destroy
-    flash[:notice] = "タグの削除が完了しました。"
-    redirect_to admin_tags_path
+    redirect_to admin_tags_path, notice: "タグの削除が完了しました。"
   end
 
   private
