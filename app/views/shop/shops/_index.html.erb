@@ -1,4 +1,5 @@
-  <table class="table">
+<table class="table">
+  <% if users.blank? == false %>
     <thead>
       <tr>
         <th></th>
@@ -28,6 +29,9 @@
           </td>
         </tr>
       <% end %>
+  <% else %>
+    <td>取り扱っている店舗はありません。</td>
+  <% end %>
       <%= paginate users %>
     </tbody>
-  </table>
+</table>
