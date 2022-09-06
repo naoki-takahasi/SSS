@@ -5,6 +5,7 @@
         <th></th>
         <th>店舗名</th>
         <th>コメント</th>
+        <th>感情スコア</th>
         <th></th>
       </thead>
       <tbody>
@@ -20,6 +21,7 @@
             <% end %>
           </td>
           <td><%= comment.comment %></td>
+          <td><%= comment.score %></td>
           <td>
             <%= link_to '削除', admin_sake_comment_path(sake, comment), method: :delete, remote: true, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
           </td>

@@ -4,6 +4,7 @@ class Shop::CommentsController < ApplicationController
     sake = Sake.find(params[:sake_id]) #コメントの親の日本酒
     @comment = current_shop.comments.new(sake_params) #ログインしている店舗を親としてコメントを作成
     @comment.sake_id = sake.id #コメントと日本酒を結びつける
+    @comment.score = Language.get_data(sake_params[:comment]) #スコア算出(コメント管理用)
     @comment.save
     @comments = sake.comments.where(shop_id: current_shop)
   end

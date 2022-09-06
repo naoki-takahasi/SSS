@@ -14,7 +14,7 @@ class Shop < ApplicationRecord
     image
   end
 
-  def self.guest
+  def self.guest #閲覧者情報
     find_or_create_by!(name: '閲覧者', email: 'guest@example.com') do |shop|
       shop.password = SecureRandom.urlsafe_base64
       shop.post = '000-0000'
