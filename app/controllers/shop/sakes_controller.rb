@@ -21,9 +21,7 @@ class Shop::SakesController < ApplicationController
   def show
     @sake = Sake.find(params[:id]) #該当する日本酒
     if @sake.is_active == false #日本酒が休売している場合
-      flash.now[:notice] = "このお酒は現在販売しておりません。"
-      @sakes = Sake.where(is_active: true).page(params[:page]) #販売中全表示
-      render :index
+      redirect_to shop_sakes_path, notice: "このお酒は現在販売しておりません。"
     end
     #取扱店一覧
     favorites = Favorite.where(sake_id: @sake.id) #日本酒から取扱店情報を検索

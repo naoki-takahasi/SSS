@@ -13,9 +13,7 @@ class Brewery::BreweriesController < ApplicationController
   def update
     @user = Brewery.find(params[:id]) #該当する酒造
     if @user.update(breweries_params)
-      flash.now[:notice] = "会員情報の変更が完了しました。"
-      @sakes = @user.sakes.page(params[:page]) #ログインしている酒造の商品一覧
-      render :show
+      redirect_to brewery_my_page_path(@user.id), notice: "会員情報の変更が完了しました。"
     else
       render :edit
     end

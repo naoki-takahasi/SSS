@@ -29,16 +29,7 @@ class Shop::ShopsController < ApplicationController
   def update
     @user = Shop.find(params[:id]) #該当する店舗
     if @user.update(shops_params)
-      flash.now[:notice] = "会員情報の変更が完了しました。"
-      #取扱品一覧
-      favorites = Favorite.where(shop_id: @user.id) #店舗の取扱品を検索
-      sakes = favorites.pluck(:sake_id) #取扱品から日本酒の情報を抽出
-      @sakes = Sake.where(id: sakes).page(params[:page]) #日本酒の検索
-      #フォロワー一覧
-      followers = Relationship.where(shop_id: @user.id) #フォロワーを検索
-      breweries = followers.pluck(:brewery_id) #フォロワーから酒造を抽出
-      @breweries = Brewery.where(id: breweries).page(params[:page]) #酒造を検索
-      render :show
+      redirect_to shop_my_page_path(@user.id), notice: "会員情報の変更が完了しました。"
     else
       render :edit
     end

@@ -37,20 +37,12 @@ class Brewery::SakesController < ApplicationController
 
   def show
     @sake = Sake.find(params[:id]) #該当する日本酒
-    if @sake.is_active == false && @sake.brewery_id != current_brewery.id #自社製品以外で休売していた場合
-      flash.now[:notice] ="このお酒は現在販売しておりません。"
-      @user = current_brewery
-      @sakes = @user.sakes.page(params[:page]) #自社製品全表示
-      render :index
-    end
     #取扱店一覧
     favorites = Favorite.where(sake_id: @sake.id) #日本酒から取扱店情報を検索
     favorite_shops = favorites.pluck(:shop_id) #取扱店情報から店舗を抽出
     @favorite_shops = Shop.where(id: favorite_shops).page(params[:page]) #店舗を検索
     #コメント一覧
     @comments = Comment.where(sake_id: @sake.id).page(params[:page]) #該当する日本酒のコメントを検索
-    comment_shops = @comments.pluck(:shop_id) #コメントから店舗を抽出
-    @comment_shops = Shop.find(comment_shops) #店舗を検索
   end
 
   def edit
@@ -60,16 +52,7 @@ class Brewery::SakesController < ApplicationController
   def update
     @sake = Sake.find(params[:id]) #該当する日本酒
     if @sake.update(sake_params)
-      flash[:notice] = "お酒の情報を変更しました。"
-      #取扱店一覧
-      favorites = Favorite.where(sake_id: @sake.id) #日本酒から取扱店情報を検索
-      favorite_shops = favorites.pluck(:shop_id) #取扱店情報から店舗を抽出
-      @favorite_shops = Shop.where(id: favorite_shops).page(params[:page]) #店舗を検索
-      #コメント一覧
-      @comments = Comment.where(sake_id: @sake.id).page(params[:page]) #該当する日本酒のコメントを検索
-      comment_shops = @comments.pluck(:shop_id) #コメントから店舗を抽出
-      @comment_shops = Shop.find(comment_shops) #店舗を検索
-      render :show
+      redirect_to brewery_sake_path(@sake.id), notice: "お酒の情報を変更しました。"
     else
       render :edit
     end
@@ -83,9 +66,7 @@ class Brewery::SakesController < ApplicationController
   def correct_user
     @sake = Sake.find(params[:id]) #該当する日本酒
     unless @sake.brewery_id == current_brewery.id #ログインしている酒造と異なった場合
-      @sakes = current_brewery.sakes.page(params[:page])
-      flash.now[:notice] = "自社のお酒以外は編集できません。"
-      render :index
+      redirect_to brewery_sakes_path, notice: "自社のお酒以外は編集できません。"
     end
   end
 end
